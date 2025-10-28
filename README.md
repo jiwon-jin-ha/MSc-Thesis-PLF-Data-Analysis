@@ -68,5 +68,5 @@ The repository contains the complete, executable R analysis pipeline.
 
 I am actively seeking roles in the AgTech/IoT and Data Analysis sectors.
 
-* **LinkedIn:** `https://www.linkedin.com/in/jiwon-ha`
+* **LinkedIn:** [Jiwon Ha's Profile](https://www.linkedin.com/in/jiwon-ha)
 * **Email:** `haj180723@gmail.com`
