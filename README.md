@@ -1,48 +1,66 @@
-# MSc-Thesis-PLF-Data-Analysis
-## Thesis: Exploring daily bodyweight of growing-finishing pigs using 3D depth camera
+# 🐷 MSc-Thesis-PLF-Data-Analysis: Automated Bodyweight Modeling
 
-**Author:** Jin Ha (Jiwon Ha)
-**Affiliation:** Wageningen University & Research (WUR), Animal Production Systems Group
+**Thesis:** Exploring daily bodyweight of growing-finishing pigs using 3D depth camera
+
+| **Author** | Jiwon(Jin) Ha |
+| :--- | :--- |
+| **Affiliation** | Wageningen University & Research (WUR) |
+| **Status** | Available for roles in AgTech/IoT and Data Analysis (Netherlands) |
 
 ---
 
 ## 1. Project Overview & Problem Statement
 
-This Master's thesis focuses on developing and evaluating an **automated, non-invasive method** for the continuous monitoring of individual pig bodyweight (BW) using **3D depth camera technology**.
+This Master's thesis develops and evaluates an **automated, non-invasive method** for the continuous monitoring of individual pig bodyweight (BW) using **3D depth camera technology** (Precision Livestock Farming, PLF).
 
 ### Problem
-Traditional BW monitoring methods are labour-intensive and stressful for the animals. This research addresses the need for **accurate, long-term** BW tracking to derive data-driven insights for improving animal welfare and farm management.
+Traditional BW monitoring methods are labour-intensive and stressful for the animals. This research addresses the need for accurate, long-term BW tracking to derive data-driven insights for improving animal welfare and farm management.
 
 ---
 
 ## 2. Technical Stack & Methodology
 
-This project utilised a hybrid approach combining IoT sensor data, computer vision algorithms, and advanced statistical modelling.
-
 ### Technologies Used
-* Data Analysis: **R Studio** (Primary Language)
-* Statistical Modeling: **Linear Mixed Model (LMM)** (using R's `lme4` package)
-* Sensors/Vision: **iDOL 65 3D Depth Camera**, **RFID System**, and a **YOLO-based algorithm** for pig identification and data filtering.
+| Category | Tool / Method |
+| :--- | :--- |
+| **Data Analysis** | **R Studio** (Primary Language) |
+| **Statistical Modeling** | **Linear Mixed Model (LMM)** (using `lme4` and `lmerTest` packages) |
+| **Sensors/Vision** | iDOL 65 3D Depth Camera, YOLO-based identification |
 
-### Methodology
-1.  **Data Pre-processing:** Implemented a stringent **3-step cleaning rule** to identify and remove extreme outliers (e.g., daily gains > 4 kg) and low-quality measurements (e.g., less than 30 photos/day).
-2.  **Expected Growth Modeling:** Applied a **5-day Moving Average** smoothing technique to mitigate noise and constructed the LMM to establish **expected growth patterns**, including random effects for individual pig and pen.
-3.  **Trend Analysis:** Utilised **Quadratic (2nd-degree polynomial) Regression** and **Locally Weighted Scatterplot Smoothing (Loess)** to analyse daily growth trend lines across three distinct experiments (N > 330 pigs).
+### Methodology (Analysis Pipeline: Scripts 01-06)
+
+The pipeline is structured across six dedicated R scripts:
+* **Data Cleaning (01):** Stringent **3-step cleaning rules** applied, including filtering by **`nb.pictures >= 30`** (Quality QA) and removal of **Misplacement Outliers**.
+* **Feature Engineering (03):** Creation of **5-day Moving Average (MA)** features for smoothed growth and calculation of **Lifetime Average Daily Gain (LADG)**.
+* **Modeling (04 & 05):** LMM (Quadratic term for time) was fitted to establish **expected growth patterns**. Models included **Random Intercepts and Random Slopes** for individual pig (`pig_id`) and pen.
 
 ---
 
 ## 3. Key Findings & Contributions
 
-* **Average Daily Gain (ADG):** Observed a general **linear growth trend** with a mean daily gain ranging from **0.985 kg to 1.05 kg** across experiments.
-* **Deviation Detection:** Residual analysis using a **2 kg threshold** per individual per day effectively captured deviation patterns. Deviations were more prevalent towards the **conclusion of experiments**, often indicating **potential underperformance**.
-* **Sex Effect (Exp 4):** Barrows exhibited higher daily growth rates until day 61, following which **gilts displayed higher daily growth rates** until slaughter.
-* **Monitoring Utility:** 3D depth cameras are valuable for **long-term BW measurements** but necessitate further development in data analysis techniques for interpreting individual daily deviations.
+| Finding | Detail |
+| :--- | :--- |
+| **Growth Trend** | Observed a general **linear growth trend** with mean daily gains between **0.985 kg and 1.05 kg** across experiments. |
+| **Deviation Detection** | Residual analysis using a **2 kg threshold** effectively captured deviations, often indicating underperformance towards the **conclusion of experiments**. |
+| **Sex Effect (Exp 4)** | **Barrows** showed higher ADG initially; **Gilts** displayed higher ADG after day 61, highlighting the need for sex-specific models. |
+| **Monitoring Utility** | Validated 3D cameras for **long-term BW measurement** but emphasized the necessity of robust data cleaning and LMM diagnostics. |
 
 ---
 
-## 4. Repository Structure & Code
+## 4. Repository Structure & Reproducibility (Scripts 01-06)
 
-Code files will be uploaded soon.
+The repository contains the complete, executable R analysis pipeline.
+
+| File / Folder | Purpose |
+| :--- | :--- |
+| `R_Scripts/` | Contains all sequential R scripts (01 to 06) |
+| `data/` | **(Local Only)** Placeholder for raw data files |
+| `output/` | **(Local Only)** Placeholder for generated images and CSV outputs |
+
+### 🚨 Data and Output Note
+
+* **Data Security:** Raw data files and large intermediate CSV files are **not included** due to data privacy and security restrictions.
+* **Reproducibility:** To fully reproduce the analysis, the user must first place the required raw data files (Exp X - Pig level camera weight data, Pig registration) into a local **`data/`** folder and then run the scripts sequentially starting from **`01_BW_Data_Cleaning_and_Preproc.R`**.
 
 ---
 
@@ -50,6 +68,5 @@ Code files will be uploaded soon.
 
 I am actively seeking roles in the AgTech/IoT and Data Analysis sectors.
 
-* **LinkedIn:** [https://www.linkedin.com/in/jiwon-ha](https://www.linkedin.com/in/jiwon-ha)
-* **Email:** haj180723@gmail.com
-* **Status:** **Available to start immediately** in the Netherlands.
+* **LinkedIn:** [Jiwon Ha's Profile](https://www.linkedin.com/in/jiwon-ha)
+* **Email:** `haj180723@gmail.com`
